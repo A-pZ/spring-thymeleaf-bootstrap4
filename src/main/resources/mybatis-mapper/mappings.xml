@@ -16,5 +16,6 @@
 			 del_flag = #{delFlag.value}
 			</if>
 		</where>
+		FOR UPDATE
 	</select>
 </mapper>

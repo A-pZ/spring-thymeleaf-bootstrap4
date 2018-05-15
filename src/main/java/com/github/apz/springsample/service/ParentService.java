@@ -2,27 +2,21 @@ package com.github.apz.springsample.service;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.apz.springsample.model.Item;
 import com.github.apz.springsample.model.ItemCondition;
-import com.github.apz.springsample.repository.ItemRepository;
 
 @Service
-//@RequiredArgsConstructor
-public class ItemService {
+public class ParentService {
 
-	@Inject
-	private ItemRepository itemRepository;
+	@Autowired
+	private ItemService itemService;
 
+	@Transactional
 	public List<Item> getItemList(ItemCondition condition) {
-
-		if (condition.getId() < 0) {
-			return null;
-		}
-
-		return itemRepository.getItemList(condition);
+		return itemService.getItemList(condition);
 	}
 }

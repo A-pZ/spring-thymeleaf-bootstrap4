@@ -7,14 +7,4 @@
 		<setting name="logImpl" value="LOG4J2"/>
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
 	</settings>
-
-	<typeHandlers>
-		<typeHandler handler="com.github.apz.springsample.typehandler.TrueOrFalseTypeHandler"/>
-	</typeHandlers>
-
-	<mappers>
-		<mapper resource="mybatis-mapper/mappings.xml"/>
-	</mappers>
-
-
 </configuration>
