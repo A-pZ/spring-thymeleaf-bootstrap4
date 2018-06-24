@@ -18,4 +18,47 @@
 		</where>
 		FOR UPDATE
 	</select>
+
+	<select id="selectUserActiveDayOfWeek" parameterType="int" resultType="com.github.apz.springsample.model.DayOfWeek">
+		SELECT
+			DAY_OF_WEEK AS dayOfWeek
+		FROM
+			ACTIVE_DAY_OF_WEEK
+		WHERE
+			ID = #{value}
+		ORDER BY
+			DAY_OF_WEEK
+	</select>
+
+	<select id="selectUserAndActiveDayOfWeek" parameterType="int" resultMap="userAndActiveDayOfWeek">
+		SELECT
+			U.ID AS id,
+			U.NAME AS name,
+			W.DAY_OF_WEEK AS dayOfWeek
+		FROM
+			USERS U
+		INNER JOIN
+			ACTIVE_DAY_OF_WEEK W
+		ON U.ID = W.ID
+		WHERE
+			U.ID = #{value}
+	</select>
+
+	<resultMap id="userAndActiveDayOfWeek" type="com.github.apz.springsample.model.User">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<collection property="dayOfWeekList" ofType="com.github.apz.springsample.model.DayOfWeek">
+			<id property="dayOfWeek" column="dayOfWeek"/>
+		</collection>
+	</resultMap>
+
+	<select id="getSingleNote" parameterType="int" resultType="com.github.apz.springsample.model.Note">
+		SELECT
+			ID AS id,
+			TASK_NOTE AS taskNote
+		FROM
+			NOTES
+		WHERE
+			ID = #{value}
+	</select>
 </mapper>
